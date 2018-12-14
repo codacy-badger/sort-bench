@@ -3,6 +3,19 @@
 
 #include "generator.hpp"
 #include "bubble.hpp"
+#include "insert.hpp"
+#include "selection.hpp"
+
+template<typename T, class sort_func>
+void bench(std::vector<T> vector, sort_func sort) {
+	auto begin {std::chrono::high_resolution_clock::now()};
+	bubble_sort(vector);
+	auto end {std::chrono::high_resolution_clock::now()};
+
+	std::cout << "Bubble sort time: "
+		<< std::chrono::duration<double, std::milli>{end - begin}.count()
+		<< "ms" << std::endl;
+}
 
 int main() {
 	// Generate random test array
@@ -10,16 +23,13 @@ int main() {
 	generate(test, 1, 100);
 
 	// Bench bubble sort
-	{
-		auto bubble = test;
-		auto begin {std::chrono::high_resolution_clock::now()};
-		bubble_sort(bubble);
-		auto end {std::chrono::high_resolution_clock::now()};
+	bench(test, bubble_sort<int>);
 
-		std::cout << "Bubble sort time: "
-			<< std::chrono::duration<double, std::milli>{end - begin}.count()
-			<< "ms" << std::endl;
-	}
+	// Bench insert sort
+	bench(test, insert_sort<int>);
+
+	// Bench selection sort
+	bench(test, selection_sort<int>);
 
 	return 0;
 }
