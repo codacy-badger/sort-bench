@@ -5,6 +5,7 @@
 #include "bubble.hpp"
 #include "insert.hpp"
 #include "selection.hpp"
+#include "merge.hpp"
 
 template<typename T, class sort_func>
 void bench(std::vector<T> vector, sort_func sort) {
@@ -30,6 +31,9 @@ int main() {
 
 	// Bench selection sort
 	bench(test, selection_sort<int>);
+
+	// Bench merge sort
+	bench(test, merge_sort<int>);
 
 	return 0;
 }
