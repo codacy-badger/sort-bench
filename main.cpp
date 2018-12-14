@@ -3,11 +3,12 @@
 
 #include "generator.hpp"
 #include "bubble.hpp"
+#include "insert.hpp"
 
 template<typename T, class sort_func>
 void bench(std::vector<T> vector, sort_func sort) {
 	auto begin {std::chrono::high_resolution_clock::now()};
-	bubble_sort(bubble);
+	bubble_sort(vector);
 	auto end {std::chrono::high_resolution_clock::now()};
 
 	std::cout << "Bubble sort time: "
@@ -22,6 +23,9 @@ int main() {
 
 	// Bench bubble sort
 	bench(test, bubble_sort<int>);
+
+	// Bench insert sort
+	bench(test, insert_sort<int>);
 
 	return 0;
 }
