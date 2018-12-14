@@ -4,6 +4,7 @@
 #include "generator.hpp"
 #include "bubble.hpp"
 #include "insert.hpp"
+#include "selection.hpp"
 
 template<typename T, class sort_func>
 void bench(std::vector<T> vector, sort_func sort) {
@@ -26,6 +27,9 @@ int main() {
 
 	// Bench insert sort
 	bench(test, insert_sort<int>);
+
+	// Bench selection sort
+	bench(test, selection_sort<int>);
 
 	return 0;
 }
