@@ -1,5 +1,5 @@
 all: 
-	g++ main.cpp -O3 -flto -o sort_bench
+	g++ main.cpp --std=c++1z -O3 -flto -o sort_bench
 
 bench:
 	./sort_bench

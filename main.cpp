@@ -1,6 +1,6 @@
 #include <iostream>
 #include <chrono>
-#include <string>
+#include <string_view>
 
 #include "generator.hpp"
 #include "bubble.hpp"
@@ -9,7 +9,7 @@
 #include "quick.hpp"
 
 template<typename T, class sort_func>
-void bench(std::string name, std::vector<T> vector, sort_func sort) {
+void bench(std::string_view name, std::vector<T> vector, sort_func sort) {
 	auto begin {std::chrono::high_resolution_clock::now()};
 	bubble_sort(vector);
 	auto end {std::chrono::high_resolution_clock::now()};
